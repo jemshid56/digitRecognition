@@ -6,7 +6,7 @@ import jsonpickle
 import numpy as np
 import json
 import base64
-from src.generate_caption import generate_captions as gc
+from src.generate_caption import generate_captions
 
 app = Flask(__name__)
 static_dir='static/'
@@ -30,7 +30,7 @@ def submit_file():
             return redirect(request.url)
         if file:
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            captions=str(gc.generate_captions(static_dir+filename))
+            captions=str(generate_captions(static_dir+filename))
             cap={"captions":captions}
 #             with open("text/data.json","w") as fjson:
 #                         json.dump(cap,fjson)
