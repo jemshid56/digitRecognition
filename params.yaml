@@ -1,0 +1,7 @@
+model_dir: saved_models
+
+reports:
+  scores: report/scores.json
+  roc: report/roc.json
+  prc: report/prc.json
+  auc: report/auc.json

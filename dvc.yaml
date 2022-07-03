@@ -1,0 +1,18 @@
+stages:
+  train:
+    cmd: [python3 src/train.py --config=params.yaml]
+    
+    deps:
+    - src/train.py
+    
+  evaluate:
+    cmd: [python3 src/evaluate.py --config=params.yaml, dvc plots show]
+    deps:
+    - saved_models/mnist_model_func.h5
+    - src/evaluate.py
+   
+    metrics:
+    - report/scores.json:
+        cache: false
+
+#

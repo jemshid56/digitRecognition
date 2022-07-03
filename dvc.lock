@@ -1,0 +1,24 @@
+schema: '2.0'
+stages:
+  train:
+    cmd:
+    - python3 src/train.py --config=params.yaml
+    deps:
+    - path: src/train.py
+      md5: 1549ae61d0f07719f5c680bc43cf75fb
+      size: 1558
+  evaluate:
+    cmd:
+    - python3 src/evaluate.py --config=params.yaml
+    - dvc plots show
+    deps:
+    - path: saved_models/mnist_model_func.h5
+      md5: 93cce38e62ac9edd28a97ba6ae0415a8
+      size: 637888
+    - path: src/evaluate.py
+      md5: 6547d3ee50be5abd0e39b8da335661d1
+      size: 1453
+    outs:
+    - path: report/scores.json
+      md5: 1927fc1f182d30b312b26a6755cc0b3e
+      size: 71
