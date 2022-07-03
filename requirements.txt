@@ -11,3 +11,9 @@ jsonpickle
 gunicorn
 gtts
 opencv-python-headless
+dvc
+sklearn
+pandas
+numpy
+numpyencoder
+matplotlib
