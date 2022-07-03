@@ -21,6 +21,7 @@ def evaluate(config_path):
     # Convert the YAML data into a dictionary
 	with open(config_path) as fh:
     		config = yaml.safe_load(fh)
+
 	print(config)
 	(train_images, train_labels),(test_images, test_labels) = mnist.load_data()
 	scores_file = config["reports"]["scores"]
