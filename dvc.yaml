@@ -4,11 +4,12 @@ stages:
     
     deps:
     - src/train.py
+    - params.yaml
     
   evaluate:
     cmd: [python3 src/evaluate.py --config=params.yaml, dvc plots show]
     deps:
-    - saved_models/mnist_model_func.h5
+    - models/mnist_model_func.h5
     - src/evaluate.py
    
     metrics:

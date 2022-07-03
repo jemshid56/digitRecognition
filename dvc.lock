@@ -4,6 +4,9 @@ stages:
     cmd:
     - python3 src/train.py --config=params.yaml
     deps:
+    - path: params.yaml
+      md5: 49e0926d3c39e9ab5534d290bbc613db
+      size: 126
     - path: src/train.py
       md5: 1549ae61d0f07719f5c680bc43cf75fb
       size: 1558
@@ -12,13 +15,13 @@ stages:
     - python3 src/evaluate.py --config=params.yaml
     - dvc plots show
     deps:
-    - path: saved_models/mnist_model_func.h5
-      md5: 93cce38e62ac9edd28a97ba6ae0415a8
+    - path: models/mnist_model_func.h5
+      md5: 51120bf4169eb5b79a162a04d9e30e1c
       size: 637888
     - path: src/evaluate.py
-      md5: 6547d3ee50be5abd0e39b8da335661d1
-      size: 1453
+      md5: 5c2479b16900ca967cd95479f586556b
+      size: 1454
     outs:
     - path: report/scores.json
-      md5: 1927fc1f182d30b312b26a6755cc0b3e
+      md5: 9849bd44543a61b69cff6781b85c55c1
       size: 71
