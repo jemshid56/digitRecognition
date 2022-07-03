@@ -9,4 +9,3 @@ jsonpickle
 gunicorn
 gtts
 opencv-python-headless
-yaml
