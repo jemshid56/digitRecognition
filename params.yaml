@@ -1,6 +1,5 @@
 model_dir: models
 
-
 reports:
   scores: report/scores.json
   roc: report/roc.json
