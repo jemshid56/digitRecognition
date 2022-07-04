@@ -1,16 +1,30 @@
 stages:
+
+  load:
+    cmd: [python3 src/start.py --config=params.yaml]
+    outs: 
+    - report/starttime
+
+    deps:
+    - params.yaml
+
   train:
     cmd: [python3 src/train.py --config=params.yaml]
     
     deps:
     - src/train.py
     - params.yaml
+    - report/starttime
+
+    outs:
+    - report/buildtime
     
   evaluate:
     cmd: [python3 src/evaluate.py --config=params.yaml, dvc plots show]
     deps:
     - models/mnist_model_func.h5
     - src/evaluate.py
+    - report/buildtime
    
     metrics:
     - report/scores.json:

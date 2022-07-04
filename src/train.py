@@ -9,6 +9,7 @@ from keras import Input
 from tensorflow.keras.datasets import mnist, fashion_mnist
 import argparse
 import yaml
+from datetime import datetime
 
 def train(config_path):
 	with open(config_path) as fh:
@@ -16,6 +17,7 @@ def train(config_path):
 	print(config)
 
 	model_file = config["model_dir"]+"/"+"mnist_model_func.h5"
+	buildtime_file = "report"+"/"+"buildtime"
 	print(model_file)
 	(train_images, train_labels),(test_images, test_labels) = mnist.load_data()
 
@@ -35,6 +37,10 @@ def train(config_path):
 	fun_model.compile(optimizer =keras.optimizers.Adam(),loss = keras.losses.SparseCategoricalCrossentropy(), metrics = ["accuracy"])
 	fun_model.fit(train_images,train_labels, epochs = 4)
 	fun_model.save(model_file)
+
+	with open(buildtime_file, 'a') as file:
+		file.write('Build Time Printed string Recorded at: %s\n' %datetime.now())
+		file.close()
 
 if __name__=="__main__":
 	args = argparse.ArgumentParser()

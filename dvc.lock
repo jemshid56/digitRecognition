@@ -5,23 +5,44 @@ stages:
     - python3 src/train.py --config=params.yaml
     deps:
     - path: params.yaml
-      md5: 49e0926d3c39e9ab5534d290bbc613db
-      size: 126
+      md5: 34f7bc0bb65f31bf7a3ac52db5c60866
+      size: 127
+    - path: report/starttime
+      md5: f78c6b806bb41e4ac7691c41cb919380
+      size: 61
     - path: src/train.py
-      md5: 1549ae61d0f07719f5c680bc43cf75fb
-      size: 1558
+      md5: 3a84e0a26d18b79327ddf070a82e6362
+      size: 1764
+    outs:
+    - path: report/buildtime
+      md5: 86d52cd3d8641492bd6708b2048cb343
+      size: 66
   evaluate:
     cmd:
     - python3 src/evaluate.py --config=params.yaml
     - dvc plots show
     deps:
     - path: models/mnist_model_func.h5
-      md5: 51120bf4169eb5b79a162a04d9e30e1c
+      md5: 2a745b1b894a0ca2c25a5321eb39f1c5
       size: 637888
+    - path: report/buildtime
+      md5: 86d52cd3d8641492bd6708b2048cb343
+      size: 66
     - path: src/evaluate.py
       md5: 5c2479b16900ca967cd95479f586556b
       size: 1454
     outs:
     - path: report/scores.json
-      md5: 9849bd44543a61b69cff6781b85c55c1
+      md5: 4d4aa5cf6b2396349ce3596e605c3059
       size: 71
+  load:
+    cmd:
+    - python3 src/start.py --config=params.yaml
+    deps:
+    - path: params.yaml
+      md5: 34f7bc0bb65f31bf7a3ac52db5c60866
+      size: 127
+    outs:
+    - path: report/starttime
+      md5: f78c6b806bb41e4ac7691c41cb919380
+      size: 61
